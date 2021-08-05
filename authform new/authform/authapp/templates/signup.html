@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up form</title>
+</head>
+<body>
+<form action="" method="POST" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+
+  <p class="er">{{error}}</p>
+  {% endfor %}
+  {% endif %}
+
+  {% for fm in form %}
+  {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+  {% endfor %}
+  <input type="submit" value="Submit">
+
+</form>
+<br><br>
+<a href="{% url 'login' %}"><input type="submit" value="Userlogin"></a>
+{% if messages %}
+{% for message in messages %}
+<span style="color:green;">
+  {{message}}
+</span>
+{% endfor %}
+{% endif %}
+
+
+
+</body>
+</html>
